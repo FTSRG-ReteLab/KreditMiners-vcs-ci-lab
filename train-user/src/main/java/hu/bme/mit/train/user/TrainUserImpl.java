@@ -4,7 +4,7 @@ import hu.bme.mit.train.interfaces.TrainController;
 import hu.bme.mit.train.interfaces.TrainUser;
 
 public class TrainUserImpl implements TrainUser {
-
+	//Some very important comment
 	private TrainController controller;
 	private int joystickPosition;
 
