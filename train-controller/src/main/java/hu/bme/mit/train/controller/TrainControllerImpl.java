@@ -8,8 +8,8 @@ import java.util.TimerTask;
 public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
-	private int referenceSpeed = 0;
-	private int speedLimit = 50;
+	private int referenceSpeed = 150;
+	private int speedLimit = 150;
 
 	private final Timer timer = new Timer("PeriodicSpeedControl");
 	private final long simulationStartedAt = System.currentTimeMillis();
