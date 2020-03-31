@@ -13,6 +13,8 @@ public class TrainSensorImpl implements TrainSensor {
 	public TrainSensorImpl(TrainController controller, TrainUser user) {
 		this.controller = controller;
 		this.user = user;
+
+		setJoystickPosition();
 	}
 
 	@Override
@@ -24,6 +26,10 @@ public class TrainSensorImpl implements TrainSensor {
 	public void overrideSpeedLimit(int speedLimit) {
 		this.speedLimit = speedLimit;
 		controller.setSpeedLimit(speedLimit);
+	}
+
+	private void setJoystickPosition() {
+		controller.setJoystickPosition(user.getJoystickPosition());
 	}
 
 }
