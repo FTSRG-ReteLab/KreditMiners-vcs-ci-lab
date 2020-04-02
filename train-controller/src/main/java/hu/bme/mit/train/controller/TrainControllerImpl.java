@@ -22,7 +22,7 @@ public class TrainControllerImpl implements TrainController {
 
 				Random rand = new Random();
 
-				step = rand.nextInt(20);
+				setJoystickPosition(rand.nextInt(20));
 
 				followSpeed();
 
@@ -46,8 +46,9 @@ public class TrainControllerImpl implements TrainController {
 	}
 
 	private void enforceLimits() {
-		if(referenceSpeed < 0)
+		if(referenceSpeed < 0){
 			referenceSpeed = 0;
+		}
 		enforceSpeedLimit();
 	}
 
