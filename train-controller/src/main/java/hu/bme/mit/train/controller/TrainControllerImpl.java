@@ -15,14 +15,13 @@ public class TrainControllerImpl implements TrainController {
 	private final Timer timer = new Timer("PeriodicSpeedControl");
 	private final long simulationStartedAt = System.currentTimeMillis();
 
+	private final Random random = new Random();
 	public TrainControllerImpl() {
 		TimerTask periodicSpeedControlTask = new TimerTask() {
 			@Override
 			public void run() {
 
-				Random rand = new Random();
-
-				setJoystickPosition(rand.nextInt(20));
+				setJoystickPosition(random.nextInt(20));
 
 				followSpeed();
 
