@@ -25,8 +25,10 @@ public class TrainSensorTest {
 
     @Test
     public void testAlarmOnTooLowSpeedLimit() {
-        sensor.overrideSpeedLimit(-50);
-        verify(user, times(1)).setAlarmState(true);
+        sensor.overrideSpeedLimit(-60);
+        sensor.overrideSpeedLimit(-30);
+        sensor.overrideSpeedLimit(-1);
+        verify(user, times(3)).setAlarmState(true);
     }
 
     @Test
@@ -39,6 +41,13 @@ public class TrainSensorTest {
     public void testAlarmBetweenTheBorders() {
         sensor.overrideSpeedLimit(300);
         verify(user, times(1)).setAlarmState(false);
+    }
+
+    @Test
+    public void testAlarmTooHighChange() {
+        when(controller.getReferenceSpeed()).thenReturn(200);
+        sensor.overrideSpeedLimit(99);
+        verify(user, times(1)).setAlarmState(true);
     }
 
     @Test

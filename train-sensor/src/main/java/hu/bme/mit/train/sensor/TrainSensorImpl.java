@@ -24,7 +24,7 @@ public class TrainSensorImpl implements TrainSensor {
 
 	@Override
 	public void overrideSpeedLimit(int speedLimit) {
-		doAlarm(speedLimit);
+		verifySpeed(speedLimit);
 
 		this.speedLimit = speedLimit;
 		controller.setSpeedLimit(speedLimit);
@@ -34,13 +34,13 @@ public class TrainSensorImpl implements TrainSensor {
 		controller.setJoystickPosition(user.getJoystickPosition());
 	}
 
-	private void doAlarm(int speedLimit) {
+	private void verifySpeed(int speedLimit) {
 		if (speedLimit < 0 || speedLimit > 500) {
 			user.setAlarmState(true);
 			return;
 		}
 
-		double diff = (double ) (speedLimit / (controller.getReferenceSpeed() == 0 ? 1 : controller.getReferenceSpeed()));
+		double diff =  speedLimit * 1.0 / (controller.getReferenceSpeed() == 0 ? 1.0 : controller.getReferenceSpeed() * 1.0);
 		if (diff < 0.5 && diff > 0) {
 			user.setAlarmState(true);
 			return;
